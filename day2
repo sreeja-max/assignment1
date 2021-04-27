@@ -1,0 +1,134 @@
+SQL*Plus: Release 18.0.0.0.0 - Production on Tue Apr 27 16:57:48 2021
+Version 18.4.0.0.0
+
+Copyright (c) 1982, 2018, Oracle.  All rights reserved.
+
+Enter user-name: conn / as sysdba
+Enter password:
+
+Connected to:
+Oracle Database 18c Express Edition Release 18.0.0.0.0 - Production
+Version 18.4.0.0.0
+
+
+
+SQL> create table employee
+  2      (
+  3      empfname varchar(20),
+  4      empmname varchar(20),
+  5      emplastname varchar(20),
+  6      empage int check(empage>0 and empage<50),
+  7      empcity varchar(20) check(upper(empcity) like 'B%'),
+  8      empdesignation varchar(20),
+  9      empid  varchar(5),
+ 10     empDOB date,
+ 11     constraints my_pk primary key(empid)
+ 12     );
+
+Table created.
+
+
+
+
+SQL> insert into employee values('kethavarapu','Roshini','sreeja',21,'Bangladesh','Manager','emp01',to_date('24/04/1998','dd/mm/yyyy'));
+
+1 row created.
+
+SQL> insert into employee values('surabathina','madhusai','sree','20','Bangalore','Sales Manager','emp02',to_date('21/08/1999','dd/mm/yyyy'));
+
+1 row created.
+
+SQL> insert into employee values('roja','valli','kethavarapu',27,'Bijapur','Product Manager','emp03',to_date('02/07/1993','dd/mm/yyyy'));
+
+1 row created.
+
+SQL> insert into employee values('eswar','sriram','kethavarapu',24,'Bhuvaneswar','Assistant Manager','emp04',to_date('21/11/1996','dd/mm/yyyy'));
+
+1 row created.
+SQL> insert into employee values('sakiv','janu','love',22,'Bangalore','Account Manager','emp05',to_date('23/12/1998','dd/mm/yyyy'));
+
+1 row created.
+
+
+SQL> update employee set empcity='Bijapur' where empid='emp02';
+
+1 row updated.
+
+SQL>
+SQL> delete from employee where empid='emp01';
+
+1 row deleted.
+
+SQL> commit;
+
+Commit complete.
+
+SQL> delete from employee;
+
+4 rows deleted.
+
+SQL> roll back;
+Rollback complete.
+SQL> select substr(empfname,1,1)||'.'||substr(empmname,1,1)||'.'||emplastname as "Employee name",to_char(empDOB,'dd-mm-yyyy') from employee;
+
+Employee name                  TO_CHAR(EM
+------------------------------ ----------
+s.m.sree                       21-08-1999
+r.v.kethavarapu                02-07-1993
+e.s.kethavarapu                21-11-1996
+s.j.love                       23-12-1998
+
+SQL> select * from employee;
+
+EMPFNAME             EMPMNAME             EMPLASTNAME              EMPAGE
+-------------------- -------------------- -------------------- ----------
+EMPCITY              EMPDESIGNATION       EMPID EMPDOB
+-------------------- -------------------- ----- ---------
+surabathina          madhusai             sree                         20
+Bijapur              Sales Manager        emp02 21-AUG-99
+
+roja                 valli                kethavarapu                  27
+Bijapur              Product Manager      emp03 02-JUL-93
+
+eswar                sriram               kethavarapu                  24
+Bhuvaneswar          Assistant Manager    emp04 21-NOV-96
+
+
+EMPFNAME             EMPMNAME             EMPLASTNAME              EMPAGE
+-------------------- -------------------- -------------------- ----------
+EMPCITY              EMPDESIGNATION       EMPID EMPDOB
+-------------------- -------------------- ----- ---------
+sakiv                janu                 love                         22
+Bangalore            Account Manager      emp05 23-DEC-98
+
+
+
+SQL> select substr(empfname,1,1) ||'.'||substr(empmname,1,1) from employee;
+
+SUBSTR(EM
+---------
+s.m
+r.v
+e.s
+s.j
+
+
+
+
+SQL> select substr(empfname,1,1) ||'.'||substr(emplastname,1,1) from employee;
+
+SUBSTR(EM
+---------
+s.s
+r.k
+e.k
+s.l
+
+SQL> select substr(empfname,1,1)|| '.'||substr(empmname,1,1)|| emplastname from employee;
+
+SUBSTR(EMPFNAME,1,1)||'.'||SU
+-----------------------------
+s.msree
+r.vkethavarapu
+e.skethavarapu
+s.jlove
