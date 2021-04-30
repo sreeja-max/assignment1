@@ -1,0 +1,90 @@
+-> create a function to check the given string contains UPPER case char or not
+Signature of function is as follows:
+
+String hasUpper(String data)
+{
+}
+return yes if it contans upper case char else return no
+
+public class UpperCase {
+		String hasUpper(String data){
+			char[] ar= data.toCharArray();
+			int f=0;
+			for(int i=0;i<ar.length;i++)
+			{
+				if(ar[i]>='A'&&ar[i]<='Z')
+				{
+					f=1;
+					break;
+				}
+			}
+			if(f==1)
+				return "Yes";
+			else
+				return "No";
+		}
+	public static void main(String[] args) {
+		String test="heLlo";
+		String test1="welcome";
+		UpperCase upperCase=new UpperCase();
+		System.out.println(upperCase.hasUpper(test));
+		System.out.println(upperCase.hasUpper(test1));
+	}
+}
+
+-> create a function to check the given string contains number   or not
+siganture same as the abouve function
+
+public class Number {
+		String hasNumber(String data){
+			char[] ar= data.toCharArray();
+			int f=0;
+			for(int i=0;i<ar.length;i++)
+			{
+				if(ar[i]>='0'&&ar[i]<='9')
+				{
+					f=1;
+					break;
+				}
+			}
+			if(f==1)
+				return "Yes";
+			else
+				return "No";
+		}
+	public static void main(String[] args) {
+		String test="heLlo1";
+		String test1="welcome";
+		Number number=new Number();
+
+
+-> create a function to check all chars in the given string are in  UPPER case or not
+Signature of function is as follows:
+boolean isCapsOnly(String data)
+return true if all chars in arg data is in upper case
+
+public class OnlyCaps {
+	boolean isCapsOnly(String data){
+		char[] ar= data.toCharArray();
+		int f=0;
+		for(int i=0;i<ar.length;i++)
+		{	
+			if(ar[i]<'A'||ar[i]>'Z')
+			{
+				f=1;
+				break;
+			}
+		}
+		if(f==1)
+			return false;
+		else
+			return true;
+		}
+	public static void main(String[] args) {
+		String test="heLlO";
+		String test1="WELCOME";
+		OnlyCaps onlyCaps=new OnlyCaps();
+		System.out.println(onlyCaps.isCapsOnly(test));
+		System.out.println(onlyCaps.isCapsOnly(test1));
+	}
+}
